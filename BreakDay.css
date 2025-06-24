@@ -53,73 +53,60 @@ nav ul li a:hover {
 }
 
 /*Contenue De La Page */
-/* Conteneur grille boutique */
-main h2 {
-  text-align: center;
-  color: #ffffff;
-  margin-bottom: 30px;
-  font-size: 2.5rem;
-}
-
-.boutique-grid {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Chaque carte produit */
-.boutique-card {
+.breakday-main {
+  max-width: 700px;
+  margin: 60px auto;
   background-color: #1a1a1a;
-  border-radius: 16px;
-  box-shadow: 0 0 15px rgba(225, 6, 0, 0.6);
-  width: 350px;
-  height: 350px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  outline: none;
-  text-decoration: none; /* enlève le soulignement */
-  color: inherit; /* garde la couleur du texte */
-
-}
-
-.boutique-card:hover,
-.boutique-card:focus {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(225, 6, 0, 1);
-}
-
-/* Image centrée et contenue */
-.boutique-card img {
-  max-width: 275px;
-  max-height: 220px;
-  object-fit: contain;
-  margin-top: 20px;
-}
-
-/* Info produit : nom + prix */
-.boutique-info {
-  margin-top: auto;
-  padding: 15px 20px 25px;
-  width: 100%;
-  text-align: center;
-  color: #fff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(225, 6, 0, 0.85);
+  color: #f5f5f5;
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
 }
 
-.boutique-info .nom {
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin-bottom: 8px;
+.breakday-logo {
+  max-width: 200px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 8px #e10600);
 }
 
-.boutique-info .prix {
-  font-weight: 600;
-  font-size: 1.15rem;
+.breakday-main h2 {
+  font-size: 2.8rem;
+  margin-bottom: 25px;
   color: #e10600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.breakday-main p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #ddd;
+}
+
+.breakday-btn {
+  display: inline-block;
+  background-color: #e10600;
+  color: white;
+  padding: 14px 36px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  margin-top: 30px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(225, 6, 0, 0.7);
+}
+
+.breakday-btn:hover,
+.breakday-btn:focus {
+  background-color: #b10400;
+  box-shadow: 0 6px 18px rgba(225, 6, 0, 0.9);
+  outline: none;
+  cursor: pointer;
 }
 
 

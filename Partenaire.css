@@ -52,8 +52,6 @@ nav ul li a:hover {
   color: #e10600;
 }
 
-/*Contenue De La Page */
-/* Conteneur grille boutique */
 main h2 {
   text-align: center;
   color: #ffffff;
@@ -61,20 +59,21 @@ main h2 {
   font-size: 2.5rem;
 }
 
-.boutique-grid {
+/* Grille partenaires (comme boutique) */
+.partenaires-grid {
   display: flex;
   gap: 30px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-/* Chaque carte produit */
-.boutique-card {
+/* Carte partenaire */
+.partenaire-card {
   background-color: #1a1a1a;
   border-radius: 16px;
   box-shadow: 0 0 15px rgba(225, 6, 0, 0.6);
   width: 350px;
-  height: 350px;
+  height: 250px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -83,43 +82,53 @@ main h2 {
   outline: none;
   text-decoration: none; /* enlève le soulignement */
   color: inherit; /* garde la couleur du texte */
-
 }
 
-.boutique-card:hover,
-.boutique-card:focus {
+.partenaire-card:hover,
+.partenaire-card:focus {
   transform: scale(1.05);
   box-shadow: 0 0 25px rgba(225, 6, 0, 1);
 }
 
-/* Image centrée et contenue */
-.boutique-card img {
-  max-width: 275px;
-  max-height: 220px;
+.partenaire-card img {
+  max-width: 1000px;
+  max-height: 1000px;
   object-fit: contain;
   margin-top: 20px;
 }
 
-/* Info produit : nom + prix */
-.boutique-info {
+.partenaire-info {
   margin-top: auto;
   padding: 15px 20px 25px;
   width: 100%;
   text-align: center;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
+
 }
 
-.boutique-info .nom {
+.partenaire-info .nom {
   font-weight: 700;
   font-size: 1.25rem;
   margin-bottom: 8px;
 }
 
-.boutique-info .prix {
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: #e10600;
+.btn-decouvrir {
+  background-color: #e10600;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: 700;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-decouvrir:hover,
+.btn-decouvrir:focus {
+  background-color: #b00400;
+  outline: none;
 }
 
 
