@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BE - Nos Equipe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Equipe.css" />
+</head>
+<body>
+  <!-- /NavBar/ -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo">
+        <img src="Asset/BrestEsport/logo.png" alt="Logo Club Esport" />
+      </a>
+      <button class="menu-toggle" aria-label="Ouvrir le menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="Accueil.html">Accueil</a></li>
+          <li><a href="#">Boutique</a></li>
+          <li><a href="#">Le Club</a></li>
+          <li><a href="Equipe.html">Nos Equipe</a></li>
+          <li><a href="#">Partenaires</a></li>
+          <li><a href="#">Actualités</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- /Fin NavBar/ -->
+ <!-- -------------- -->
+  <!-- /Contenue/ -->
+
+
+  <!-- /Fin Contenue/ -->
+ <!-- ---------------- -->
+  <!-- /Script JS (Menu Burger)/ -->
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+  });
+</script>
+  <!-- /Fin Script JS (Menu Burger)/ -->
+</body>
+</html>

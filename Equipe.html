@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nos Equipe - BE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Equipe.css" />
+  <script src="Accueil.js"></script>
+</head>
+<body>
+  <!-- /NavBar/ -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo">
+        <img src="Asset/BrestEsport/logo.png" alt="Logo Club Esport" />
+      </a>
+      <button class="menu-toggle" aria-label="Ouvrir le menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="Accueil.html">Accueil</a></li>
+          <li><a href="#">Boutique</a></li>
+          <li><a href="#">Le Club</a></li>
+          <li><a href="Equipe.html">Nos Equipe</a></li>
+          <li><a href="#">Partenaires</a></li>
+          <li><a href="Actu.html">Actualités</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- /Fin NavBar/ -->
+ <!-- -------------- -->
+  <!-- /Contenue/ -->
+<main>
+  <h2>Nos Équipes</h2>
+  <div class="team-grid">
+    <a href="LoLFeminin.html" class="team-card" aria-label="Équipe League of Legends Féminine">
+    <img src="Asset/BrestEsport/logo Lol.png" alt="Logo Équipe League of Legends Féminine" />
+    </a>
+    <a href="SSB.html" class="team-card" aria-label="Équipe Super Smash Bros">
+    <img src="Asset/BrestEsport/download-removebg-preview.png" alt="Logo Super Smash Bros" />
+    </a>
+  </div>
+
+  <section id="team-details" class="hidden">
+    <button id="close-details" aria-label="Fermer">✕</button>
+    <div id="details-content"></div>
+  </section>
+</main>
+  <!-- /Fin Contenue/ -->
+ <!-- ---------------- -->
+  <!-- /Script JS (Menu Burger)/ -->
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+  });
+
+  const teamCards = document.querySelectorAll('.team-card');
+const detailsSection = document.getElementById('team-details');
+const detailsContent = document.getElementById('details-content');
+const closeBtn = document.getElementById('close-details');
+
+const teamsData = {
+  smash: {
+    name: "Équipe Smash Bros",
+    description: "Une équipe compétitive de Smash Bros, avec des joueurs passionnés et talentueux.",
+    players: ["Joueur1", "Joueur2", "Joueur3"],
+    achievements: [
+      "2ème place au tournoi régional 2024",
+      "Champion du Breizh Smash Cup"
+    ]
+  },
+  "lol-feminin": {
+    name: "Équipe Féminine League of Legends",
+    description: "Notre équipe féminine de League of Legends, compétitive sur la scène nationale.",
+    players: ["Joueuse1", "Joueuse2", "Joueuse3", "Joueuse4", "Joueuse5"],
+    achievements: [
+      "Participation au championnat national 2024",
+      "Finalistes du tournoi féminin Breizh eSports"
+    ]
+  }
+};
+
+teamCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const teamKey = card.getAttribute('data-team');
+    const team = teamsData[teamKey];
+    if (!team) return;
+
+    detailsContent.innerHTML = `
+      <h3>${team.name}</h3>
+      <p>${team.description}</p>
+      <h4>Joueurs :</h4>
+      <ul>${team.players.map(player => `<li>${player}</li>`).join('')}</ul>
+      <h4>Palmarès :</h4>
+      <ul>${team.achievements.map(item => `<li>${item}</li>`).join('')}</ul>
+    `;
+
+    detailsSection.classList.remove('hidden');
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  detailsSection.classList.add('hidden');
+});
+
+</script>
+  <!-- /Fin Script JS (Menu Burger)/ -->
+</body>
+</html>

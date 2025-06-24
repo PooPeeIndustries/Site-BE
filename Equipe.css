@@ -1,0 +1,234 @@
+/* Reset simple */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0e0e0e;
+  color: #f5f5f5;
+}
+
+/*NavBar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: #1a1a1a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.logo img {
+  height: 90px; /* plus grand */
+  filter: drop-shadow(0 0 10px rgba(225, 6, 0, 1));
+  background-color: rgba(0,0,0,0.3); /* léger fond sombre */
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: filter 0.3s ease, background-color 0.3s ease;
+}
+
+.logo img:hover {
+  filter: drop-shadow(0 0 20px rgba(225, 6, 0, 1));
+  background-color: rgba(0,0,0,0.6);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #e10600;
+}
+
+/*Contenue De La Page */
+/* Main & titres */
+main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+main h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Grille des équipes */
+.team-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Chaque carte */
+.team-card {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(225, 6, 0, 0.6);
+  width:  350px;
+  height: 350px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(225, 6, 0, 1);
+}
+
+.team-card img {
+  max-width: 275px;
+  max-height: 275px;
+  object-fit: contain;
+}
+
+/* Fenêtre détails */
+#team-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(225, 6, 0, 0.8);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 2000;
+  display: none; /* cachée par défaut */
+}
+
+#team-details.show {
+  display: block;
+}
+
+#close-details {
+  background: none;
+  border: none;
+  color: #e10600;
+  font-size: 1.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+#details-content h3 {
+  margin-bottom: 15px;
+  color: #e10600;
+}
+
+#details-content h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#details-content ul {
+  list-style: disc inside;
+  margin-bottom: 10px;
+}
+
+
+/*Menu Burger */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #e10600;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #e10600;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    background-color: #1a1a1a;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    gap: 30px;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.7);
+  }
+
+  nav.active {
+    right: 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+nav.active ul {
+  padding-left: 20px; 
+}
+
+nav.active ul li a {
+  display: block;
+  padding-left: 10px; 
+}
+
+
