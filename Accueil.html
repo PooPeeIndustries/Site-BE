@@ -4,23 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Accueil - Brest Esport</title>
+  
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <!-- Fichier CSS -->
   <link rel="stylesheet" href="Accueil.css" />
 </head>
 <body>
+
+  <!-- Overlay d'introduction avec logo animé -->
   <div class="intro-overlay">
-  <img src="asset/logo.png" alt="Logo Brest Esport" class="intro-logo">
- </div>
+    <img src="asset/logo.png" alt="Logo Brest Esport" class="intro-logo" />
+  </div>
+
+  <!-- HEADER et barre de navigation -->
   <header>
     <div class="navbar">
       <a href="#" class="logo">
         <img src="asset/logo.png" alt="Logo Club Esport" />
       </a>
+
+      <!-- Bouton menu burger pour mobile -->
       <button class="menu-toggle" aria-label="Ouvrir le menu">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </button>
+
+      <!-- Navigation principale -->
       <nav>
         <ul>
           <li><a href="Accueil.html">Accueil</a></li>
@@ -33,94 +45,114 @@
       </nav>
     </div>
   </header>
+
+  <!-- Section vidéo avec logo centré -->
   <section class="video-banner">
-  <video autoplay muted loop playsinline>
-    <source src="asset/VidéoBrest1.mp4" type="video/mp4">
-    Votre navigateur ne supporte pas la vidéo.
-  </video>
-  <div class="logo-center">
-    <img src="asset/logo.png" alt="Logo Brest Esport" />
-  </div>
-  <div class="scroll-down" onclick="scrollToMaillot()">
-    ↓
-  </div>
-</section>
-  <!--  -->
+    <video autoplay muted loop playsinline>
+      <source src="asset/VidéoBrest1.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
+
+    <div class="logo-center">
+      <img src="asset/logo.png" alt="Logo Brest Esport" />
+    </div>
+
+    <!-- Flèche pour scroller vers la section Maillot -->
+    <div class="scroll-down" onclick="scrollToMaillot()">↓</div>
+  </section>
+
+  <!-- Section Maillot Officiel -->
   <section class="hero" id="maillot">
     <div class="container">
+
+      <!-- Texte du Hero -->
       <div class="hero-text">
         <h1>Maillot Officiel</h1>
         <p>Représente notre équipe avec style.</p>
         <a href="Boutique.html" class="btn">Découvrir</a>
       </div>
+
+      <!-- Image du Maillot -->
       <div class="hero-image">
         <img src="asset/Maillot.png" alt="Maillot officiel" />
       </div>
+
     </div>
   </section>
-  <!--  -->
+
+  <!-- FOOTER -->
   <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-logo">
-      <img src="asset/logo.png" alt="Logo Brest Esport" />
+    <div class="footer-container">
+
+      <!-- Logo dans le footer -->
+      <div class="footer-logo">
+        <img src="asset/logo.png" alt="Logo Brest Esport" />
+      </div>
+
+      <!-- Liens du footer -->
+      <div class="footer-links">
+        <a href="Accueil.html">Accueil</a>
+        <a href="Boutique.html">Boutique</a>
+        <a href="#">Le Club</a>
+        <a href="Equipe.html">Nos Équipes</a>
+        <a href="Partenaire.html">Partenaires</a>
+        <a href="Actu.html">Actualités</a>
+      </div>
+
+      <!-- Réseaux sociaux -->
+      <div class="footer-social">
+        <a href="https://twitter.com/PooPeeProd" target="_blank">Twitter</a>
+        <!-- Tu peux ajouter Insta, Twitch, etc. -->
+      </div>
+
     </div>
 
-    <div class="footer-links">
-      <a href="Accueil.html">Accueil</a>
-      <a href="Boutique.html">Boutique</a>
-      <a href="#">Le Club</a>
-      <a href="Equipe.html">Nos Équipes</a>
-      <a href="Partenaire.html">Partenaires</a>
-      <a href="Actu.html">Actualités</a>
+    <!-- Bas de footer -->
+    <div class="footer-bottom">
+      &copy; 2025 Brest Esport. Tous droits réservés.
     </div>
+  </footer>
 
-    <div class="footer-social">
-      <a href="https://twitter.com/PooPeeProd" target="_blank">Twitter</a>
-      <!-- Tu peux ajouter Insta, Twitch, etc. -->
-    </div>
-  </div>
-  <div class="footer-bottom">
-    &copy; 2025 Brest Esport. Tous droits réservés.
-  </div>
-</footer>
+  <!-- SCRIPT JS -->
+  <script>
+    // Menu burger toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
 
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Animation overlay au chargement de la page
+    window.addEventListener('load', () => {
+      const overlay = document.querySelector('.intro-overlay');
+      const logo = document.querySelector('.intro-logo');
+
+      setTimeout(() => {
+        logo.classList.add('shrink');
+      }, 700); // Démarrage animation logo plus rapide
+
+      setTimeout(() => {
+        overlay.classList.add('hide');
+      }, 1500); // Masquer l'overlay après animation
+    });
+
+    // Fonction scroll fluide vers la section maillot
+    function scrollToMaillot() {
+      const target = document.getElementById('maillot');
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Apparition de la section Hero au scroll
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero');
+      const rect = hero.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        hero.classList.add('visible');
+      }
+    });
+  </script>
+  
 </body>
 </html>
-  <!--  -->
-<script>
-  const menuToggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('nav');
-
-  menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-  });
-
-  window.addEventListener('load', () => {
-    const overlay = document.querySelector('.intro-overlay');
-    const logo = document.querySelector('.intro-logo');
-
-    setTimeout(() => {
-      logo.classList.add('shrink');
-    }, 700); // démarrage plus rapide
-
-    setTimeout(() => {
-      overlay.classList.add('hide');
-    }, 1500); // animation terminée plus vite
-  });
-
-    function scrollToMaillot() {
-    const target = document.getElementById('maillot');
-    target.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    const rect = hero.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      hero.classList.add('visible');
-    }
-  });
-
-</script>
-</body>

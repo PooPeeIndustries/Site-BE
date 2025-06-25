@@ -1,16 +1,24 @@
-/* Reset simple */
+/* =====================
+   RESET DE BASE
+===================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* =====================
+   STYLE GLOBAL DU BODY
+===================== */
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #0e0e0e;
   color: #f5f5f5;
 }
 
+/* =====================
+   NAVBAR
+===================== */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -21,9 +29,9 @@ body {
 }
 
 .logo img {
-  height: 90px; /* plus grand */
+  height: 90px; /* Logo plus grand */
   filter: drop-shadow(0 0 10px rgba(225, 6, 0, 1));
-  background-color: rgba(0,0,0,0.3); /* léger fond sombre */
+  background-color: rgba(0,0,0,0.3); /* Fond sombre léger */
   padding: 5px 10px;
   border-radius: 8px;
   transition: filter 0.3s ease, background-color 0.3s ease;
@@ -51,7 +59,9 @@ nav ul li a:hover {
   color: #e10600;
 }
 
-/* Hero section */
+/* =====================
+   SECTION VIDEO BANNER
+===================== */
 .video-banner {
   position: relative;
   width: 100%;
@@ -71,20 +81,57 @@ nav ul li a:hover {
   filter: brightness(0.6);
 }
 
-.overlay-logo {
+.logo-center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.logo-center img {
+  width: 200px;
+  filter: drop-shadow(0 0 15px white);
+  animation: fadeInZoom 1.2s ease-in-out;
+}
+
+@keyframes fadeInZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation flèche scroll */
+.scroll-down {
   position: absolute;
-  top: 50%;
+  bottom: 200px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: white;
+  animation: bounce 1.2s infinite;
+  cursor: pointer;
   z-index: 2;
 }
 
-.overlay-logo img {
-  width: 200px;
-  height: auto;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
 }
 
+/* =====================
+   SECTION HERO
+===================== */
 .hero {
   background: #0e0e0e;
   padding: 100px 20px;
@@ -93,6 +140,15 @@ nav ul li a:hover {
   align-items: center;
   min-height: 80vh;
   color: #f5f5f5;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .container {
@@ -151,6 +207,9 @@ nav ul li a:hover {
   box-shadow: 0 0 20px rgba(225, 6, 0, 0.6);
 }
 
+/* =====================
+   MENU BURGER
+===================== */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -171,7 +230,7 @@ nav ul li a:hover {
   transition: all 0.3s ease;
 }
 
-/* Afficher le bouton sur petits écrans */
+/* Affichage menu burger sur petits écrans */
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
@@ -202,17 +261,19 @@ nav ul li a:hover {
   }
 }
 
-
-/* Décaler un peu le texte du menu burger vers la gauche */
+/* Décalage texte menu burger */
 nav.active ul {
-  padding-left: 20px; /* ajoute un padding à gauche du menu */
+  padding-left: 20px; /* Padding à gauche du menu */
 }
 
 nav.active ul li a {
   display: block;
-  padding-left: 10px; /* décale le texte des liens vers la gauche */
+  padding-left: 10px; /* Décalage texte vers la gauche */
 }
 
+/* =====================
+   INTRO OVERLAY ANIMATION
+===================== */
 .intro-overlay {
   position: fixed;
   top: 0;
@@ -247,77 +308,9 @@ nav.active ul li a {
   opacity: 0;
 }
 
-.video-banner {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.video-banner video {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-.logo-center {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.logo-center img {
-  width: 200px;
-  filter: drop-shadow(0 0 15px white);
-  animation: fadeInZoom 1.2s ease-in-out;
-}
-
-@keyframes fadeInZoom {
-  from {
-    opacity: 0;
-    transform: scale(0.7);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.scroll-down {
-  position: absolute;
-  bottom: 200px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2rem;
-  color: white;
-  animation: bounce 1.2s infinite;
-  cursor: pointer;
-  z-index: 2;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translate(-50%, 0);
-  }
-  50% {
-    transform: translate(-50%, -10px);
-  }
-}
-
-.hero {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.hero.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+/* =====================
+   FOOTER
+===================== */
 .footer {
   background-color: #111;
   color: #f5f5f5;
