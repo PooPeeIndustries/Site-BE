@@ -4,41 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Accueil - Brest Esport</title>
-  
+
+  <!-- SEO de base -->
+  <meta name="description" content="Brest Esport — Maillot officiel, actualités du club et boutique. Représente notre équipe avec style." />
+  <meta property="og:title" content="Brest Esport — Accueil" />
+  <meta property="og:description" content="Découvre le maillot officiel et l’univers Brest Esport." />
+  <meta property="og:type" content="website" />
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  
+
   <!-- Fichier CSS -->
   <link rel="stylesheet" href="Accueil.css" />
 </head>
 <body>
 
   <!-- Overlay d'introduction avec logo animé -->
-  <div class="intro-overlay">
+  <div class="intro-overlay" aria-hidden="true">
     <img src="asset/logo.png" alt="Logo Brest Esport" class="intro-logo" />
   </div>
 
   <!-- HEADER et barre de navigation -->
   <header>
     <div class="navbar">
-      <a href="#" class="logo">
+      <a href="Accueil.html" class="logo" aria-label="Retour à l'accueil">
         <img src="asset/logo.png" alt="Logo Club Esport" />
       </a>
 
       <!-- Bouton menu burger pour mobile -->
-      <button class="menu-toggle" aria-label="Ouvrir le menu">
+      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-controls="main-nav" aria-expanded="false">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </button>
 
       <!-- Navigation principale -->
-      <nav>
+      <nav id="main-nav">
         <ul>
-          <li><a href="Accueil.html">Accueil</a></li>
+          <li><a href="Accueil.html" aria-current="page">Accueil</a></li>
           <li><a href="Boutique.html">Boutique</a></li>
           <li><a href="#">Le Club</a></li>
-          <li><a href="Equipe.html">Nos Equipe</a></li>
+          <li><a href="Equipe.html">Nos Équipes</a></li>
           <li><a href="Partenaire.html">Partenaires</a></li>
         </ul>
       </nav>
@@ -46,26 +52,26 @@
   </header>
 
   <!-- Section vidéo avec logo centré -->
-  <section class="video-banner">
-    <video autoplay muted loop playsinline>
+  <section class="video-banner" aria-label="Bannière vidéo">
+    <video autoplay muted loop playsinline preload="metadata" poster="asset/logo.png">
       <source src="asset/VidéoBrest1.mp4" type="video/mp4" />
       Votre navigateur ne supporte pas la vidéo.
     </video>
-    <div class="logo-center">
-      <img src="asset/logo.png" alt="Logo Brest Esport" />
+    <div class="logo-center" aria-hidden="true">
+      <img src="asset/logo.png" alt="" />
     </div>
 
     <!-- Flèche pour scroller vers la section Maillot -->
-    <div class="scroll-down" onclick="scrollToMaillot()">↓</div>
+    <div class="scroll-down" role="button" tabindex="0" aria-label="Aller à la section Maillot">↓</div>
   </section>
 
   <!-- Section Maillot Officiel -->
-  <section class="hero" id="maillot">
+  <section class="hero" id="maillot" aria-labelledby="maillot-title">
     <div class="container">
 
       <!-- Texte du Hero -->
       <div class="hero-text">
-        <h1>Maillot Officiel</h1>
+        <h1 id="maillot-title">Maillot Officiel</h1>
         <p>Représente notre équipe avec style.</p>
         <a href="Boutique.html" class="btn">Découvrir</a>
       </div>
@@ -89,17 +95,16 @@
 
       <!-- Liens du footer -->
       <div class="footer-links">
-        <a href="Accueil.html">Accueil</a>
+        <a href="Accueil.html" aria-current="page">Accueil</a>
         <a href="Boutique.html">Boutique</a>
         <a href="#">Le Club</a>
       </div>
 
       <!-- Réseaux sociaux -->
       <div class="footer-social">
-        <a href="https://twitter.com/PooPeeProd" target="_blank">Twitter</a>
+        <a href="https://twitter.com/PooPeeProd" target="_blank" rel="noopener">Twitter</a>
         <a href="Equipe.html">Nos Équipes</a>
         <a href="Partenaire.html">Partenaires</a>
-        <!-- Tu peux ajouter Insta, Twitch, etc. -->
       </div>
 
     </div>
@@ -112,44 +117,77 @@
 
   <!-- SCRIPT JS -->
   <script>
-    // Menu burger toggle
+    // ======= Sélecteurs sécurisés
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
+    const overlay = document.querySelector('.intro-overlay');
+    const logo = document.querySelector('.intro-logo');
+    const hero = document.querySelector('.hero');
+    const scrollDown = document.querySelector('.scroll-down');
 
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-      menuToggle.classList.toggle('active');
-    });
+    // ======= Menu burger toggle (avec ARIA + fermeture au clic lien)
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('click', () => {
+        const isActive = nav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      });
 
-    // Animation overlay au chargement de la page
-    window.addEventListener('load', () => {
-      const overlay = document.querySelector('.intro-overlay');
-      const logo = document.querySelector('.intro-logo');
-
-      setTimeout(() => {
-        logo.classList.add('shrink');
-      }, 700); // Démarrage animation logo plus rapide
-
-      setTimeout(() => {
-        overlay.classList.add('hide');
-      }, 1500); // Masquer l'overlay après animation
-    });
-
-    // Fonction scroll fluide vers la section maillot
-    function scrollToMaillot() {
-      const target = document.getElementById('maillot');
-      target.scrollIntoView({ behavior: 'smooth' });
+      // Fermer le menu quand on clique sur un lien (mobile)
+      nav.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.tagName === 'A' && nav.classList.contains('active')) {
+          nav.classList.remove('active');
+          menuToggle.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
     }
 
-    // Apparition de la section Hero au scroll
-    window.addEventListener('scroll', () => {
-      const hero = document.querySelector('.hero');
+    // ======= Animation overlay au chargement de la page (avec réduction si prefers-reduced-motion)
+    window.addEventListener('load', () => {
+      if (overlay && logo) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) {
+          overlay.classList.add('hide');
+        } else {
+          setTimeout(() => logo.classList.add('shrink'), 700);
+          setTimeout(() => overlay.classList.add('hide'), 1500);
+        }
+      }
+    });
+
+    // ======= Scroll fluide vers la section maillot (+ clavier)
+    function scrollToMaillot() {
+      const target = document.getElementById('maillot');
+      if (!target) return;
+      // Respecte prefers-reduced-motion
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    if (scrollDown) {
+      scrollDown.addEventListener('click', scrollToMaillot);
+      scrollDown.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          scrollToMaillot();
+        }
+      });
+    }
+
+    // ======= Apparition de la section Hero au scroll (élément mis en cache)
+    const revealHero = () => {
+      if (!hero) return;
       const rect = hero.getBoundingClientRect();
       if (rect.top < window.innerHeight - 100) {
         hero.classList.add('visible');
+        window.removeEventListener('scroll', revealHero);
       }
-    });
+    };
+    window.addEventListener('scroll', revealHero);
+    // Appel initial au cas où l’élément est déjà visible
+    revealHero();
   </script>
-  
 </body>
 </html>

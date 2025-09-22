@@ -26,6 +26,8 @@ body {
   padding: 10px 30px;
   background-color: #1a1a1a;
   box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 2100; /* au-dessus de la vidéo */
 }
 
 .logo img {
@@ -55,7 +57,8 @@ nav ul li a {
   transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a[aria-current="page"] {
   color: #e10600;
 }
 
@@ -69,21 +72,30 @@ nav ul li a:hover {
   overflow: hidden;
 }
 
+/* Remplace le filter: brightness par un overlay GPU-friendly */
+.video-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 2;
+  pointer-events: none;
+}
+
 .video-banner video {
   position: absolute;
-  top: 37.5%;
+  top: 50%;
   left: 50%;
   min-width: 100%;
   min-height: 100%;
   transform: translate(-50%, -50%);
   object-fit: cover;
   z-index: 1;
-  filter: brightness(0.6);
 }
 
 .logo-center {
   position: relative;
-  z-index: 2;
+  z-index: 3; /* au-dessus de l’overlay */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,14 +122,20 @@ nav ul li a:hover {
 /* Animation flèche scroll */
 .scroll-down {
   position: absolute;
-  bottom: 200px;
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 2rem;
   color: white;
   animation: bounce 1.2s infinite;
   cursor: pointer;
-  z-index: 2;
+  z-index: 3;
+  user-select: none;
+  outline: none;
+}
+
+.scroll-down:focus {
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
 }
 
 @keyframes bounce {
@@ -219,7 +237,7 @@ nav ul li a:hover {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 2200;
 }
 
 .menu-toggle .bar {
@@ -243,13 +261,15 @@ nav ul li a:hover {
     height: 100vh;
     width: 250px;
     background-color: #1a1a1a;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding-top: 80px;
     gap: 30px;
     transition: right 0.3s ease;
     box-shadow: -2px 0 8px rgba(0,0,0,0.7);
-    z-index: 2000; /* >>> au-dessus de la vidéo et du header */
+    z-index: 2000; /* sous l'overlay, au-dessus de la vidéo */
+    padding-left: 20px;
   }
 
   nav.active {
@@ -260,16 +280,26 @@ nav ul li a:hover {
     flex-direction: column;
     gap: 20px;
   }
-}
 
-/* Décalage texte menu burger */
-nav.active ul {
-  padding-left: 20px; /* Padding à gauche du menu */
-}
+  /* Logo plus petit en mobile */
+  .logo img {
+    height: 64px;
+  }
 
-nav.active ul li a {
-  display: block;
-  padding-left: 10px; /* Décalage texte vers la gauche */
+  /* Hero en colonne en mobile, sans changer le contenu */
+  .container {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 2.4rem;
+  }
+
+  .scroll-down {
+    bottom: 60px; /* évite les découpes sur petit écran */
+  }
 }
 
 /* =====================
@@ -285,7 +315,7 @@ nav.active ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 3000; /* > nav et vidéo */
   transition: opacity 1s ease, visibility 1s ease;
 }
 
@@ -361,4 +391,15 @@ nav.active ul li a {
   color: #888;
   border-top: 1px solid #333;
   padding-top: 15px;
+}
+
+/* =====================
+   ACCESSIBILITÉ / MOTION
+===================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
