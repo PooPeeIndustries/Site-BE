@@ -232,4 +232,94 @@ nav.active ul li a {
   padding-left: 10px; 
 }
 
+.footer {
+  background:#0e0e0e;
+  color:#dfe6ea;
+  padding:48px 20px 28px;
+  margin-top:60px;
+  font-size:0.95rem;
+  border-top:1px solid #182026;
+}
 
+.footer-container{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 260px 1fr 1fr;
+  gap:40px 80px;
+  align-items:flex-start;
+  padding-top:8px;
+  padding-bottom:12px;
+  border-bottom:1px solid #182026;
+}
+
+.footer-logo img{
+  height:60px;
+  filter: drop-shadow(0 0 6px rgba(0,208,255,.55));
+}
+
+.footer-links,
+.footer-social{
+  display:grid;
+  gap:10px;
+}
+
+.footer-links::before,
+.footer-social::before{
+  content: attr(data-title);
+  content: attr(data-title, "CATALOGUE");
+  display:block;
+  font-size:14px;
+  letter-spacing:.04em;
+  color:#00d0ff;
+  margin-bottom:14px;
+}
+
+.footer-links::before{ content:"INFORMATIONS"; }
+.footer-social::before{ content:"NOS RESEAUX"; }
+
+.footer-links a,
+.footer-social a{
+  color:#c9d6de;
+  text-decoration:none;
+  font-size:14.5px;
+  opacity:.9;
+  transition:opacity .15s ease, color .15s ease, transform .15s ease;
+}
+
+.footer-links a:hover,
+.footer-social a:hover{
+  color:#ffffff;
+  opacity:1;
+  transform:translateX(2px);
+}
+
+.footer-bottom{
+  max-width:1200px;
+  margin:18px auto 0;
+  text-align:center;
+  font-size:13.5px;
+  color:#8b9aa4;
+}
+
+@media (max-width: 900px){
+  .footer-container{
+    grid-template-columns: 1fr 1fr;
+    gap:28px;
+  }
+}
+@media (max-width: 640px){
+  .footer-container{
+    grid-template-columns: 1fr;
+    gap:22px;
+  }
+  .footer-logo{ order:-1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

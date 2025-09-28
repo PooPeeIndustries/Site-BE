@@ -4,41 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Accueil - Brest Esport</title>
-
-  <!-- SEO de base -->
   <meta name="description" content="Brest Esport — Maillot officiel, actualités du club et boutique. Représente notre équipe avec style." />
   <meta property="og:title" content="Brest Esport — Accueil" />
   <meta property="og:description" content="Découvre le maillot officiel et l’univers Brest Esport." />
   <meta property="og:type" content="website" />
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-
-  <!-- Fichier CSS -->
   <link rel="stylesheet" href="Accueil.css" />
 </head>
 <body>
-
-  <!-- Overlay d'introduction avec logo animé -->
   <div class="intro-overlay" aria-hidden="true">
     <img src="asset/logo.png" alt="Logo Brest Esport" class="intro-logo" />
   </div>
 
-  <!-- HEADER et barre de navigation -->
   <header>
     <div class="navbar">
       <a href="Accueil.html" class="logo" aria-label="Retour à l'accueil">
         <img src="asset/logo.png" alt="Logo Club Esport" />
       </a>
-
-      <!-- Bouton menu burger pour mobile -->
       <button class="menu-toggle" aria-label="Ouvrir le menu" aria-controls="main-nav" aria-expanded="false">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </button>
-
-      <!-- Navigation principale -->
       <nav id="main-nav">
         <ul>
           <li><a href="Accueil.html" aria-current="page">Accueil</a></li>
@@ -51,7 +38,6 @@
     </div>
   </header>
 
-  <!-- Section vidéo avec logo centré -->
   <section class="video-banner" aria-label="Bannière vidéo">
     <video autoplay muted loop playsinline preload="metadata" poster="asset/logo.png">
       <source src="asset/VidéoBrest1.mp4" type="video/mp4" />
@@ -60,64 +46,61 @@
     <div class="logo-center" aria-hidden="true">
       <img src="asset/logo.png" alt="" />
     </div>
-
-    <!-- Flèche pour scroller vers la section Maillot -->
     <div class="scroll-down" role="button" tabindex="0" aria-label="Aller à la section Maillot">↓</div>
   </section>
 
-  <!-- Section Maillot Officiel -->
   <section class="hero" id="maillot" aria-labelledby="maillot-title">
     <div class="container">
-
-      <!-- Texte du Hero -->
       <div class="hero-text">
         <h1 id="maillot-title">Maillot Officiel</h1>
         <p>Représente notre équipe avec style.</p>
         <a href="Boutique.html" class="btn">Découvrir</a>
       </div>
-
-      <!-- Image du Maillot -->
       <div class="hero-image">
         <img src="asset/Maillot.png" alt="Maillot officiel" />
       </div>
-
     </div>
   </section>
 
-  <!-- FOOTER -->
+    <section class="last-video">
+      <h2>📺 Notre dernière vidéo</h2>
+      <div class="video-fixed">
+        <iframe 
+          src="https://www.youtube-nocookie.com/embed/pTT_ztGp9wE?rel=0&showinfo=0&iv_load_policy=3&color=red"
+          title="Dernière vidéo YouTube"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
   <footer class="footer">
     <div class="footer-container">
-
-      <!-- Logo dans le footer -->
       <div class="footer-logo">
         <img src="asset/logo.png" alt="Logo Brest Esport" />
       </div>
-
-      <!-- Liens du footer -->
       <div class="footer-links">
         <a href="Accueil.html" aria-current="page">Accueil</a>
         <a href="Boutique.html">Boutique</a>
         <a href="#">Le Club</a>
-      </div>
-
-      <!-- Réseaux sociaux -->
-      <div class="footer-social">
-        <a href="https://twitter.com/PooPeeProd" target="_blank" rel="noopener">Twitter</a>
         <a href="Equipe.html">Nos Équipes</a>
         <a href="Partenaire.html">Partenaires</a>
       </div>
-
+      <div class="footer-social">
+        <a href="" target="_blank" rel="noopener">Twitch</a>
+        <a href="" target="_blank" rel="noopener">Twitter</a>
+        <a href="" target="_blank" rel="noopener">Youtube</a>
+        <a href="" target="_blank" rel="noopener">Instagram</a>
+        <a href="" target="_blank" rel="noopener">Discord</a>
+      </div>
     </div>
-
-    <!-- Bas de footer -->
     <div class="footer-bottom">
-      &copy; 2025 Brest Esport. Tous droits réservés.
+      &copy; 2025 Poo__Pee. Tous droits réservés.
     </div>
   </footer>
 
-  <!-- SCRIPT JS -->
   <script>
-    // ======= Sélecteurs sécurisés
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
     const overlay = document.querySelector('.intro-overlay');
@@ -125,15 +108,12 @@
     const hero = document.querySelector('.hero');
     const scrollDown = document.querySelector('.scroll-down');
 
-    // ======= Menu burger toggle (avec ARIA + fermeture au clic lien)
     if (menuToggle && nav) {
       menuToggle.addEventListener('click', () => {
         const isActive = nav.classList.toggle('active');
         menuToggle.classList.toggle('active');
         menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
       });
-
-      // Fermer le menu quand on clique sur un lien (mobile)
       nav.addEventListener('click', (e) => {
         const target = e.target;
         if (target && target.tagName === 'A' && nav.classList.contains('active')) {
@@ -144,7 +124,6 @@
       });
     }
 
-    // ======= Animation overlay au chargement de la page (avec réduction si prefers-reduced-motion)
     window.addEventListener('load', () => {
       if (overlay && logo) {
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -157,11 +136,9 @@
       }
     });
 
-    // ======= Scroll fluide vers la section maillot (+ clavier)
     function scrollToMaillot() {
       const target = document.getElementById('maillot');
       if (!target) return;
-      // Respecte prefers-reduced-motion
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
     }
@@ -176,7 +153,6 @@
       });
     }
 
-    // ======= Apparition de la section Hero au scroll (élément mis en cache)
     const revealHero = () => {
       if (!hero) return;
       const rect = hero.getBoundingClientRect();
@@ -186,7 +162,6 @@
       }
     };
     window.addEventListener('scroll', revealHero);
-    // Appel initial au cas où l’élément est déjà visible
     revealHero();
   </script>
 </body>
