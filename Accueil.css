@@ -212,88 +212,124 @@ nav ul li a[aria-current="page"] {
 }
 
 
-/* ==========================================================================
-   HERO SECTION
-   ========================================================================== */
+/* =============================
+   Base style
+============================= */
 
-.hero {
-  background: #0e0e0e;
-  padding: 100px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  color: #f5f5f5;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+.kc-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.3fr;
+    gap: 28px;
+    max-width: 1350px;
+    margin: 80px auto;
+    padding: 0 20px;
 }
 
-.hero.visible {
-  opacity: 1;
-  transform: translateY(0);
+.kc-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    height: 350px; /* taille par défaut proche KC */
+    cursor: pointer;
+    display: block;
 }
 
-/* Container */
-.container {
-  display: flex;
-  max-width: 1200px;
-  width: 100%;
-  align-items: center;
-  gap: 60px;
+.kc-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.58);
+    transition: 0.3s ease-in-out;
 }
 
-/* Text */
-.hero-text {
-  flex: 1;
-  max-width: 550px;
+.kc-item span {
+    position: absolute;
+    bottom: 20px;
+    left: 25px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    font-family: "Inter", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
-.hero-text h1 {
-  font-weight: 700;
-  font-size: 3.1rem;
-  margin-bottom: 20px;
-  color: #ffffff;
-}
-
-.hero-text p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #ccc;
-}
-
-/* CTA Button */
-.btn {
-  background-color: #e10600;
-  padding: 14px 36px;
-  border-radius: 6px;
-  font-weight: 700;
-  color: #fff;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-  display: inline-block;
-  text-decoration: none;
-}
-
-.btn:hover {
-  background-color: #b00400;
-  cursor: pointer;
-}
-
-/* Image */
-.hero-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+/* Hover KC */
+.kc-item:hover img {
+    filter: brightness(0.35);
+    transform: scale(1.05);
 }
 
 
-.hero-image img {
-  max-width: 100%;
-  max-height: 400px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(225, 6, 0, 0.6);
+/* =============================
+   Layout EXACT KC (desktop)
+============================= */
+
+.item-big-left-top {
+    grid-column: 1;
+    grid-row: 1;
 }
+
+.item-small-right-top {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.item-big-left-bottom {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.item-big-right-bottom {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+
+/* =============================
+   RESPONSIVE MODE
+============================= */
+
+/* Écran moyen (entre 900 et 1200px) */
+@media (max-width: 1200px) {
+    .kc-item {
+        height: 300px;
+    }
+}
+
+/* Tablette horizontale / petit laptop */
+@media (max-width: 900px) {
+    .kc-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .item-big-right-bottom {
+        height: 300px !important;
+    }
+}
+
+/* Tablette verticale */
+@media (max-width: 700px) {
+    .kc-item {
+        height: 260px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 550px) {
+    .kc-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .kc-item {
+        height: 240px;
+    }
+
+    .kc-item span {
+        font-size: 1.4rem;
+    }
+}
+
 
 /* ==========================================================================
    LAST VIDEO (YouTube)
