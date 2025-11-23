@@ -56,12 +56,12 @@
   </div>
 </section>
 <section class="kc-grid">
-    <a class="kc-item item-big-left-top" href="#">
+    <a class="kc-item item-big-left-top" href="Equipe.html">
         <img src="asset/NosEquipe.png" alt="">
         <span>NOS EQUIPE</span>
     </a>
 
-    <a class="kc-item item-small-right-top" href="#">
+    <a class="kc-item item-small-right-top" href="Boutique.html" id="maillot">
         <img src="asset/MaillotAccueil.png" alt="">
         <span>Maillot 2026</span>
     </a>
@@ -95,20 +95,35 @@
       <div class="footer-logo">
         <img src="asset/logo.png" alt="Logo Brest Esport" />
       </div>
-      <div class="footer-links">
-        <a href="Accueil.html" aria-current="page">Accueil</a>
-        <a href="Boutique.html">Boutique</a>
-        <a href="#">Le Club</a>
-        <a href="Equipe.html">Nos Équipes</a>
-        <a href="Partenaire.html">Partenaires</a>
+      
+      <div class="footer-links accordion-item">
+        <button class="accordion-header" aria-expanded="false" aria-controls="info-content">
+          INFORMATIONS 
+          <span class="icon" aria-hidden="true">+</span>
+        </button>
+        <div class="accordion-content" id="info-content">
+          <a href="Accueil.html" aria-current="page">Accueil</a>
+          <a href="Boutique.html">Boutique</a>
+          <a href="#">Le Club</a>
+          <a href="Equipe.html">Nos Équipes</a>
+          <a href="Partenaire.html">Partenaires</a>
+        </div>
       </div>
-      <div class="footer-social">
-        <a href="" target="_blank" rel="noopener">Twitch</a>
-        <a href="" target="_blank" rel="noopener">Twitter</a>
-        <a href="" target="_blank" rel="noopener">Youtube</a>
-        <a href="" target="_blank" rel="noopener">Instagram</a>
-        <a href="" target="_blank" rel="noopener">Discord</a>
+
+      <div class="footer-social accordion-item">
+        <button class="accordion-header" aria-expanded="false" aria-controls="social-content">
+          NOS RESEAUX 
+          <span class="icon" aria-hidden="true">+</span>
+        </button>
+        <div class="accordion-content" id="social-content">
+          <a href="" target="_blank" rel="noopener">Twitch</a>
+          <a href="" target="_blank" rel="noopener">Twitter</a>
+          <a href="" target="_blank" rel="noopener">Youtube</a>
+          <a href="" target="_blank" rel="noopener">Instagram</a>
+          <a href="" target="_blank" rel="noopener">Discord</a>
+        </div>
       </div>
+
     </div>
     <div class="footer-bottom">
       &copy; 2025 Poo__Pee. Tous droits réservés.
@@ -116,73 +131,112 @@
   </footer>
   
   <script>
+    // --- Fonctionnalité de la navigation mobile ---
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
     const overlay = document.querySelector('.intro-overlay');
     const logo = document.querySelector('.intro-logo');
-    const hero = document.querySelector('.hero');
     const scrollDown = document.querySelector('.scroll-down');
 
     if (menuToggle && nav) {
-          menuToggle.addEventListener('click', () => {
-          const isActive = nav.classList.toggle('active');
-          menuToggle.classList.toggle('active');
-          menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-          document.body.classList.toggle('menu-open', isActive);
-          nav.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-      });
-      nav.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target && target.tagName === 'A' && nav.classList.contains('active')) {
-          nav.classList.remove('active');
-          menuToggle.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
+        menuToggle.addEventListener('click', () => {
+            const isActive = nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            document.body.classList.toggle('menu-open', isActive);
+            nav.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        });
+        nav.addEventListener('click', (e) => {
+            const target = e.target;
+            if (target && target.tagName === 'A' && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
     }
 
+    // --- Animation Intro ---
     window.addEventListener('load', () => {
-      if (overlay && logo) {
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduceMotion) {
-          overlay.classList.add('hide');
-        } else {
-          setTimeout(() => logo.classList.add('shrink'), 700);
-          setTimeout(() => overlay.classList.add('hide'), 1500);
+        if (overlay && logo) {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduceMotion) {
+                overlay.classList.add('hide');
+            } else {
+                setTimeout(() => logo.classList.add('shrink'), 700);
+                setTimeout(() => overlay.classList.add('hide'), 1500);
+            }
         }
-      }
     });
 
+    // --- Scroll vers Maillot ---
     function scrollToMaillot() {
-      const target = document.getElementById('maillot');
-      if (!target) return;
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+        const target = document.getElementById('maillot');
+        if (!target) return;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
     }
 
     if (scrollDown) {
-      scrollDown.addEventListener('click', scrollToMaillot);
-      scrollDown.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          scrollToMaillot();
+        scrollDown.addEventListener('click', scrollToMaillot);
+        scrollDown.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                scrollToMaillot();
+            }
+        });
+    }
+    
+    // --- Fonctionnalité Accordéon Footer ---
+    function setupFooterAccordion() {
+        // Cible uniquement les en-têtes si l'écran est petit (moins de 640px)
+        if (window.matchMedia('(max-width: 639px)').matches) {
+            const headers = document.querySelectorAll('.accordion-header');
+
+            headers.forEach(header => {
+                if (header.classList.contains('listener-added')) return;
+                
+                header.addEventListener('click', () => {
+                    const content = document.getElementById(header.getAttribute('aria-controls'));
+                    const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+                    // Fermer tous les autres 
+                    document.querySelectorAll('.accordion-header').forEach(h => {
+                        if (h !== header && h.getAttribute('aria-expanded') === 'true') {
+                           h.setAttribute('aria-expanded', 'false');
+                           const otherContent = document.getElementById(h.getAttribute('aria-controls'));
+                           otherContent.style.maxHeight = '0';
+                           otherContent.style.paddingTop = '0';
+                        }
+                    });
+
+                    // Ouvrir/Fermer l'élément actuel
+                    if (isExpanded) {
+                        header.setAttribute('aria-expanded', 'false');
+                        content.style.maxHeight = '0';
+                        content.style.paddingTop = '0';
+                    } else {
+                        header.setAttribute('aria-expanded', 'true');
+                        // CORRECTION : Ajouter 20px de buffer au scrollHeight pour ne pas couper le dernier lien
+                        content.style.maxHeight = content.scrollHeight + 20 + "px";
+                        content.style.paddingTop = '14px'; 
+                    }
+                });
+                
+                header.classList.add('listener-added');
+            });
         }
-      });
     }
 
-    const revealHero = () => {
-      if (!hero) return;
-      const rect = hero.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
-        hero.classList.add('visible');
-        window.removeEventListener('scroll', revealHero);
-      }
-    };
-    window.addEventListener('scroll', revealHero);
-    revealHero();
+    // Lance l'accordéon au chargement
+    window.addEventListener('load', setupFooterAccordion);
 
-
-
+    // Gère le cas où l'utilisateur redimensionne entre mobile/desktop
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(setupFooterAccordion, 250); 
+    });
   </script>
 </body>
 </html>
