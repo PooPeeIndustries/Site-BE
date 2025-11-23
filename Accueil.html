@@ -26,7 +26,7 @@
         <span class="bar"></span>
         <span class="bar"></span>
       </button>
-      <nav id="main-nav">
+      <nav id="main-nav" aria-hidden="true">
         <ul>
           <li><a href="Accueil.html" aria-current="page">Accueil</a></li>
           <li><a href="Boutique.html">Boutique</a></li>
@@ -37,7 +37,6 @@
       </nav>
     </div>
   </header>
-
   <section class="video-banner" aria-label="Bannière vidéo">
     <video autoplay muted loop playsinline preload="metadata" poster="asset/logo.png">
       <source src="asset/VidéoBrest1.mp4" type="video/mp4" />
@@ -48,7 +47,13 @@
     </div>
     <div class="scroll-down" role="button" tabindex="0" aria-label="Aller à la section Maillot">↓</div>
   </section>
-
+<section class="sponsors-bar">
+  <div class="sponsors-track">
+    <img src="asset/BreakdayBar.png" alt="Sponsor 1">
+    <img src="asset/BrestBar.png" alt="Sponsor 2">
+    <img src="asset/UniBar.png" alt="Sponsor 3">
+  </div>
+</section>
   <section class="hero" id="maillot" aria-labelledby="maillot-title">
     <div class="container">
       <div class="hero-text">
@@ -61,19 +66,19 @@
       </div>
     </div>
   </section>
-
-    <section class="last-video">
-      <h2>📺 Notre dernière vidéo</h2>
-      <div class="video-fixed">
-        <iframe 
-          src="http://www.youtube.com/embed/_OiPPTsdHIA?yt:stretch=16:9&vq=hd720p&loop=0&color=red"
-          title="Dernière vidéo YouTube"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </section>
+<div class="separator"></div>
+  <section class="last-video">
+    <h2>📺 Notre dernière vidéo</h2>
+    <div class="video-wrapper">
+      <iframe 
+        src="https://www.youtube.com/embed/_OiPPTsdHIA?rel=0&autoplay=0"
+        title="Dernière vidéo YouTube"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="footer-container">
@@ -109,10 +114,12 @@
     const scrollDown = document.querySelector('.scroll-down');
 
     if (menuToggle && nav) {
-      menuToggle.addEventListener('click', () => {
-        const isActive = nav.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+          menuToggle.addEventListener('click', () => {
+          const isActive = nav.classList.toggle('active');
+          menuToggle.classList.toggle('active');
+          menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+          document.body.classList.toggle('menu-open', isActive);
+          nav.setAttribute('aria-hidden', isActive ? 'false' : 'true');
       });
       nav.addEventListener('click', (e) => {
         const target = e.target;
@@ -163,6 +170,9 @@
     };
     window.addEventListener('scroll', revealHero);
     revealHero();
+
+
+
   </script>
 </body>
 </html>
